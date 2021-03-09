@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+    <!-- Test properties file -->
+	<bean 
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="ignoreResourceNotFound" value="true" />
+		<property name="location">
+			<value>test.properties</value>
+		</property>
+	</bean>
+    
+    
+    
+	<bean id="UICommon.CLI" class="havis.test.suite.beans.ui.CLI">
+		<property name="def">
+			<map>
+				<entry key="reportersObjectIds">
+					<list>
+						<value>reportersCommon.files</value>
+					</list>
+				</entry>
+				<entry key="statisticCreatorsObjectIds">
+					<list>
+						<value>statisticsCommon.errors</value>
+					</list>
+				</entry>
+			</map>
+		</property>
+	</bean>
+
+	<bean id="UICommon.Remote" class="havis.test.suite.beans.ui.CLI">
+		<property name="def">
+			<map>
+				<entry key="reportersObjectIds">
+					<list>
+						<value>reportersCommon.files</value>
+					</list>
+				</entry>
+				<entry key="reportersObjectIds">
+					<list>
+						<value>reportersCommon.files</value>
+					</list>
+				</entry>
+				<entry key="statisticCreatorsObjectIds">
+					<list>
+						<value>statisticsCommon.errors</value>
+					</list>
+				</entry>
+			</map>
+		</property>
+		<property name="remoteAccess" value="true"/>
+		<property name="baseURI" value="${havis.test.suite.baseURI:http://localhost:55555}" />
+	</bean>
+
+</beans>

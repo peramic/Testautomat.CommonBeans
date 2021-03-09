@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="Test Suite">
+  <test name="Test">
+    <packages>
+      <package name="Havis.RfidTestSuite.Reporters" />
+      <package name="Havis.RfidTestSuite.StatisticsCreators" />
+      <package name="Havis.RfidTestSuite.StepsCommon" />
+      <package name="Havis.RfidTestSuite.UICommon" />      
+    </packages>
+  </test>
+</suite>

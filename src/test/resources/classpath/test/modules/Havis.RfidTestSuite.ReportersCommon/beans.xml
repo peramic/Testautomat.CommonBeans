@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+	
+	<bean id="reportersCommon.files" class="havis.test.suite.beans.reporter.Files">
+	</bean>
+
+	<bean id="reporters.files.fileCount" class="havis.test.suite.beans.reporter.Files">
+		<property name="fileCount" value="2" />
+	</bean>
+	
+	<bean id="reporters.files.directorySize" class="havis.test.suite.beans.reporter.Files">
+		<property name="directorySize" value="2" />
+	</bean>
+	
+	<bean id="reporters.files.fileLastWriteTimeInterval" class="havis.test.suite.beans.reporter.Files">
+		 <property name="fileLastWriteTimeInterval" value="4" />
+	</bean>
+
+</beans>

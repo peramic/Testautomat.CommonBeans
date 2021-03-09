@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+	<bean id="ui.cli" class="havis.test.suite.beans.ui.CLI">
+	</bean>
+
+	<bean id="ui.cliDefaults" class="havis.test.suite.beans.ui.CLI">
+		<property name="def">
+			<map>
+				<entry key="appsObjectIds">
+					<list>
+						<value>app1</value>
+						<value>app2</value>
+					</list>
+				</entry>
+				<entry key="reportersObjectIds">
+					<list>
+						<value>reporter1</value>
+					</list>
+				</entry>
+				<entry key="statisticCreatorsObjectIds">
+					<list>
+						<value>statisticCreator1</value>
+					</list>
+				</entry>
+				<entry key="count" value="2" />
+			</map>
+		</property>
+	</bean>
+
+
+
+</beans>

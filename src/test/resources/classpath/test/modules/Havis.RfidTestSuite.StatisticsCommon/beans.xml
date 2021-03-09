@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+	<bean id="statistics.create.noConf" class="havis.test.suite.beans.creator.Filter">
+	</bean>
+
+	<bean id="statistics.create.a" class="havis.test.suite.beans.creator.Filter">
+		<property name="expression" value="//a" />
+		<property name="reportIfEmpty" value="false" />
+	</bean>
+
+	<bean id="statistics.create.b" class="havis.test.suite.beans.creator.Filter">
+		<property name="expression" value="//a" />
+	</bean>
+
+	<bean id="statistics.errors" class="havis.test.suite.beans.creator.Filter">
+		<property name="expression">
+			<value>
+        <![CDATA[
+declare namespace q1 = "http://www.HARTING.com/RFID/TestAutomat";
+if (not(/q1:testCase/q1:report/@isIntermediateReport = true())
+    and (exists(//q1:module//q1:diff) or //q1:module//q1:result/@isException = true()))
+then
+<q1:testCase>{
+    /q1:testCase/q1:report
+  }<q1:steps>{ 
+    for $s in //q1:step
+    where exists($s/q1:module//q1:diff) or $s/q1:module//q1:result/@isException = true()
+    return $s
+  }</q1:steps>
+</q1:testCase>
+else ()
+        ]]>
+			</value>
+		</property>
+		<property name="reportIfEmpty" value="false" />
+	</bean>
+
+	<bean id="statistics.cleanup.fileCount" class="havis.test.suite.beans.creator.Filter">
+		<property name="expression" value="//a" />
+		<property name="fileCount" value="2" />
+	</bean>
+
+	<bean id="statistics.cleanup.directorySize" class="havis.test.suite.beans.creator.Filter">
+		<property name="expression" value="//a" />
+		<property name="directorySize" value="2" />
+	</bean>
+
+	<bean id="statistics.cleanup.fileLastWriteTimeInterval" class="havis.test.suite.beans.creator.Filter">
+		<property name="expression" value="//a" />
+		<property name="fileLastWriteTimeInterval" value="4" />
+	</bean>
+
+
+</beans>

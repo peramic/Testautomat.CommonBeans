@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+	<bean id="statisticsCommon.errors" class="havis.test.suite.beans.creator.Filter">
+		<property name="expression">
+			<value>
+        <![CDATA[
+			declare namespace q1 = "http://www.HARTING.com/RFID/TestAutomat";
+			if (exists(/q1:testCase/q1:report/@endTime)
+			    and (exists(//q1:step/q1:reports//q1:exception)
+			         or exists(//q1:module//q1:diff) 
+			         or //q1:module//q1:result/@isException = true()))
+			then
+			<q1:testCase>{
+			    /q1:testCase/q1:report
+			  }<q1:steps>{ 
+			    for $s in //q1:step
+			    where exists($s/q1:reports//q1:exception)
+			          or $s/q1:module//q1:result/@isException = true() 
+			          or exists($s/q1:module//q1:diff)
+			    return $s
+			  }</q1:steps>
+			</q1:testCase>
+			else ()
+        ]]>
+			</value>
+		</property>
+		
+		<!-- Whether an empty report shall be written to a report file or not -->
+		<property name="reportIfEmpty" value="true" />
+		<!-- Count of remaining files after clean up -->
+		<property name="fileCount" value="10" />
+		<!-- Size of all remaining files after clean up (in kByte) -->
+		<property name="directorySize" value="100000" />
+
+	</bean>
+</beans>
